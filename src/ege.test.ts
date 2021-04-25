@@ -19,3 +19,7 @@ test('test 3', () => {
 test('test 4', () => {
     expect(egeResult(3000, 10, 3)).toBe(115825790);
 });
+
+test('test 5', () => {
+    expect(egeResult(15000, 10, 3)).toBe(1336622142690);
+});
