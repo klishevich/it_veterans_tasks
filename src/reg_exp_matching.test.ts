@@ -35,4 +35,16 @@ describe("Tests", () => {
     test("test 7", () => {
         expect(isMatch("mississippi", "mis*is*ip*.")).toBe(true);
     });
+
+    test("test 8", () => {
+        expect(isMatch("aaa", "a*a")).toBe(true);
+    });
+
+    test("test 9", () => {
+        expect(isMatch("aabcbcbcaccbcaabc", ".*a*aa*.*b*.c*.*a*")).toBe(true);
+    });
+
+    test("test 10", () => {
+        expect(isMatch("aa", "a*c*")).toBe(true);
+    });
 });
