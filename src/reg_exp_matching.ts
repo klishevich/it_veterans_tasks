@@ -19,12 +19,13 @@ export function isMatch(s: string, p: string): boolean {
         console.log("lastSChar", lastSChar);
     };
     const getToSChar = (c: string): boolean => {
+        console.log(911, c);
         let prevChar = lastSChar;
         let nextChar = lastSChar;
         do {
             if (prevChar !== nextChar) return false;
             nextChar = getSChar();
-        } while (nextChar !== c || !nextChar);
+        } while (((c==="." && prevChar === nextChar) && nextChar !== c) || !nextChar);
         lastSChar = s[--lastSCharPosition];
         return true;
     };
@@ -39,10 +40,10 @@ export function isMatch(s: string, p: string): boolean {
 
     do {
         const pChar = getPChar();
-        console.log(101, pChar);
+        console.log(101, lastPCharPosition, pChar);
         if (!pChar) {
             const sChar = getSChar();
-            console.log(102, sChar);
+            console.log(102, lastSCharPosition, sChar);
             return !sChar;
         }
         const nextPChar = p[lastPCharPosition + 1];
@@ -71,6 +72,7 @@ export function isMatch(s: string, p: string): boolean {
         } else {
             console.log(112);
             const sChar = getSChar();
+            console.log("sChar", lastSCharPosition, sChar);
             if (!sChar || sChar !== pChar) return false;
         }
     } while (lastPCharPosition < p.length);

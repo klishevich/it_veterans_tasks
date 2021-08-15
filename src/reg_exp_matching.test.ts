@@ -26,4 +26,13 @@ describe("Tests", () => {
         // Explanation: it will only match mississppi, one i is missing
         expect(isMatch("mississippi", "mis*is*p*.")).toBe(false);
     });
+
+    test("test 6", () => {
+        // Explanation: "a" does not match the entire string "aa".
+        expect(isMatch("ppi", "p*.")).toBe(true);
+    });
+
+    test("test 7", () => {
+        expect(isMatch("mississippi", "mis*is*ip*.")).toBe(true);
+    });
 });
