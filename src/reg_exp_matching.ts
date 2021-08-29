@@ -33,34 +33,16 @@ export function isMatch(s: string, p: string): boolean {
     if (nextPChar === "*") {
         if (p.length > 2) {
             const subStrings = getValidSubstrings(s, pChar);
-            for (let i = 0; i < subStrings.length; i++) {
-                const str = subStrings[i];
-                if (isMatch(str, p.substr(2))) {
-                    return true;
-                }
-            }
-            return false;
-        } else if (p.length === 2) {
-            return allSameChars(s, pChar);
+            return subStrings.some((str) => isMatch(str, p.substr(2)));
         } else {
-            throw Error(`weird bug p.length < 2, ${p.length}`);
+            return allSameChars(s, pChar);
         }
     } else {
         // ordinary chars
         if (p.length > 1) {
-            if (p[0] === s[0] || (p[0] === "." && s.length >= 1)) {
-                return isMatch(s.substr(1), p.substr(1));
-            } else {
-                return false;
-            }
-        } else if (p.length === 1) {
-            if (s.length !== 1) {
-                return false;
-            } else {
-                return p[0] === "." || p[0] === s[0];
-            }
+            return p[0] === s[0] || (p[0] === "." && s.length >= 1) ? isMatch(s.substr(1), p.substr(1)) : false;
         } else {
-            throw Error(`weird bug p.length < 1, ${p.length}`);
+            return s.length !== 1 ? false : p[0] === "." || p[0] === s[0];
         }
     }
 }
