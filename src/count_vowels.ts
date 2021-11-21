@@ -77,14 +77,12 @@ export function getVowelSubstrings(str: string): StringInfo[] {
     return res;
 }
 
-// export function countValidSubstrings
-
-export function countVowels(str: string) {
+export function countVowelSubstrings(word: string): number {
     let res = 0;
-    const vowelStrings: StringInfo[] = getVowelSubstrings(str);
+    const vowelStrings: StringInfo[] = getVowelSubstrings(word);
     for (let stringInfo of vowelStrings) {
         const length = stringInfo.str.length;
-        for (let start=0;start<length-VOWELS_CNT;start++) {
+        for (let start=0;start<=length-VOWELS_CNT;start++) {
             for (let end=length; end >= start + VOWELS_CNT; end--) {
                 const subStr = stringInfo.str.substring(start, end);
                 const subStrInfo = new StringInfo(subStr);
@@ -96,6 +94,6 @@ export function countVowels(str: string) {
             }
         }
     }
-
+    
     return res;
 }
